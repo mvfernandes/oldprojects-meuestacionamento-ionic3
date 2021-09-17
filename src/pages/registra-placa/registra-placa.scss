@@ -1,0 +1,36 @@
+page-registra-placa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .header-input-placa {
+    display: flex;
+    justify-content: center;
+
+    .input-placa {
+      border: solid 3px map-get($colors, primary) !important;
+      border-radius: 2px;
+      width: 100% !important;
+      max-width: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .traco {
+        color: #fff;
+        font-weight: 900;
+        font-size: 30px;
+      }
+
+      .input {
+        color: #fff;
+        font-size: 20px;
+      }
+    }
+  }
+
+  ion-card {
+    margin: 10px 0 !important;
+    width: 100% !important;
+  }
+}

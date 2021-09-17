@@ -1,0 +1,43 @@
+page-relatorio {
+  .select-data-relatio {
+    ion-list {
+      margin: 0 !important;
+    }
+    width: 100% !important;
+    padding: 0 20px !important;
+    ion-label,
+    ion-select {
+      color: #fff !important;
+      text-transform: uppercase !important;
+    }
+  }
+
+  .space-between {
+    display: flex !important;
+    justify-content: space-between;
+  }
+
+  ion-footer {
+    background: rgba(0, 0, 0, 0) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    ion-navbar {
+      background: map-get($colors, primary);
+      color: #fff;
+      // padding: 0 5px;
+    }
+  }
+
+  .float-right {
+    float: right !important;
+  }
+  .border-ticket {
+    border-bottom: 0.1rem inset !important;
+    margin-bottom: 6px !important;
+  }
+
+  .sanfona-fechada {
+    transition: all 0.2s;
+    height: 0;
+  }
+}

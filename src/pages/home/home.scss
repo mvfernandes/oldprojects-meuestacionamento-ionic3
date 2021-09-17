@@ -1,3 +1,16 @@
 page-home {
+  ion-avatar {
+    width: 150px;
+  }
 
+  .icon-car {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    background: #fff;
+    color: map-get($colors, secondary);
+    ion-icon {
+      font-size: 80px;
+    }
+  }
 }

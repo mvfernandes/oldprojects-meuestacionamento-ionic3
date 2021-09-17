@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Ajustes</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="newCategorie()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="reloadScreen()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="flex-center">
+  <div class="container flex-center">
+
+    <ion-card>
+      <ion-list inset>
+        <ion-item>
+          <ion-label ion-text [color]="quantidade_vagas ? 'primary' : 'danger'">Quantidade de vagas:</ion-label>
+          <ion-input type="number" [(ngModel)]="quantidade_vagas" placeholder=""></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+    <div class="w-100">
+      <ion-card *ngFor="let item of categorias; let i = index" >
+        <!-- <ion-badge item-end>Índice {{ i }}</ion-badge> -->
+        <ion-list inset>
+          <ion-item>
+            <ion-label ion-text [color]="item.tipo ? 'primary' : 'danger'">Tipo / Categoria</ion-label>
+            <ion-input [(ngModel)]="item.tipo" type="text" placeholder="Carro, Moto, Avulso etc..."
+              autocapitalize="characters" (ngModelChange)="item.tipo = $event.toLocaleUpperCase()"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label ion-text [color]="item.valor !== '' ? 'primary' : 'danger'">Valor </ion-label>
+            <ion-label>R$</ion-label>
+            <ion-input [(ngModel)]="item.valor" type="number"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label ion-text [color]="item.tolerancia !== '' ? 'primary' : 'danger'">Tolerância</ion-label>
+            <ion-input [(ngModel)]="item.tolerancia" type="number" max="2" placeholder="Máximo 59 minutos"></ion-input>
+          </ion-item>
+
+        </ion-list>
+
+
+        <ion-buttons center>
+          <button *ngIf="!estaNoPatio(item.tipo)" ion-button small color="danger" icon-only (click)="removeItem(i)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-card>
+
+      <button [disabled]="!categorias.length" ion-button large block (click)="salvarAlteracoes()">Salvar
+        alterações</button>
+    </div>
+
+  </div>
+</ion-content>

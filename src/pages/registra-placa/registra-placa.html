@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ titlePage }}</ion-title>
+  </ion-navbar>
+
+  <div class="header-input-placa" padding>
+    <div class="input-placa">
+
+      <ion-input autocapitalize="characters" (keyup.enter)="inputNum.setFocus()" #inputPlacaText text-center type="text"
+        class="input" placeholder="AAA" [(ngModel)]="placaText" (ngModelChange)="placaText = $event.toLocaleUpperCase()"
+        (input)="handleInput(1,$event.target.value)">
+      </ion-input>
+
+      <label class="traco">-</label>
+
+      <ion-input (keyup.enter)="registerCar()" #inputPlacaNum text-center type="number" class="input" placeholder="0000"
+        [(ngModel)]="placaNum" (input)="handleInput(2,$event.target.value)"></ion-input>
+
+    </div>
+  </div>
+</ion-header>
+
+<ion-content padding class="flex-center">
+
+  <div class="container flex-center">
+
+
+    <button *ngIf="titlePage === 'ENTRADA'" [disabled]="!placaNum || !placaText" (click)="registerCar()" ion-button
+      large block margin-top>Registrar</button>
+
+    <!-- <button *ngIf="titlePage === 'SAIDA'" color="danger" ion-button large block margin-top>Efetuar Saída</button> -->
+
+    <div *ngIf="titlePage === 'SAIDA'" class="_block">
+
+      <h3 *ngIf="!veiculos_no_patio.length" ion-text text-center margin-top color="light">Nada encontrado</h3>
+
+      <ion-card padding *ngFor="let item of veiculos_no_patio">
+        <h4>PLaca: {{ item.placa }} | {{ item.tipo }}</h4>
+        <h4>Valor hora: R${{ item.valor }}</h4>
+        <h4>Tolerância: {{ item.tolerancia }} minutos</h4>
+        <h4>Data entrada: {{ tranformData(item.hora_entrada).data }}</h4>
+        <h4>Hora entrada: {{ tranformData(item.hora_entrada).hora }}</h4>
+        <button ion-button small color="danger" item-end (click)="saidaPlaca(item)">Dar saída</button>
+
+      </ion-card>
+    </div>
+
+  </div>
+
+</ion-content>

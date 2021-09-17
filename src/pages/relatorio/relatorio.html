@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title *ngIf="!searchIsOpen">Relatório</ion-title>
+
+    <!-- <ion-searchbar placeholder="Buscar PLaca" *ngIf="searchIsOpen" showCancelButton="true"
+      (search)="buscarPlaca($event.target.value)" (ionCancel)="searchIsOpen = false" animated="true" (input)="buscarPlaca($event.target.value)"></ion-searchbar>
+
+    <ion-buttons end>
+      <button ion-button icon-only *ngIf="!searchIsOpen" (click)="searchIsOpen = true">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons> -->
+
+  </ion-navbar>
+
+  <div class="select-data-relatio" *ngIf="caixas_fechados && !keyboard.isOpen()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Selecione um caixa</ion-label>
+        <ion-select [(ngModel)]="data_selecionada" cancelText="Cancelar" okText="Selecionar"
+          (ionChange)="selectData($event)">
+
+          <ion-option *ngFor="let data of caixas_fechados" [value]="data">
+            {{data.data_fechamento}} - {{data.hora_fechamento}}
+          </ion-option>
+
+          <ion-option value="default">
+            Caixa Aberto
+          </ion-option>
+
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-header>
+
+<ion-content class="flex-center">
+  <div class="container flex-center">
+
+    <ion-card padding *ngFor="let item of array_render">
+
+      <h2 ion-text text-center color="primary">{{ item.placa }}</h2>
+      <h3 ion-text text-center margin-bottom>{{ item.tipo }}</h3>
+
+      <div>
+        <h3 class="border-ticket">Valor hora: <strong class="float-right">R${{ item.valor }}</strong></h3>
+      </div>
+      <div>
+        <h3 class="border-ticket">Tolerância: <strong class="float-right">{{ item.tolerancia }}
+            minutos</strong></h3>
+      </div>
+
+      <div>
+        <h3 class="border-ticket">Data entrada: <strong class="float-right">
+            {{ tranformData(item.hora_entrada).data }}
+          </strong></h3>
+        <h3 class="border-ticket">Hora entrada: <strong class="float-right"
+            float-rigth>{{ tranformData(item.hora_entrada).hora }}</strong></h3>
+      </div>
+      <div>
+        <h3 class="border-ticket">Data saída: <strong class="float-right">
+            {{ tranformData(item.hora_saida).data }}
+          </strong></h3>
+        <h3 class="border-ticket">Hora saída: <strong class="float-right">
+            {{ tranformData(item.hora_saida).hora }}
+          </strong></h3>
+        <h3 class="border-ticket">Permanência: <strong class="float-right">
+            {{ item.permanencia }}
+          </strong>
+        </h3>
+      </div>
+
+
+      <h3 ion-text text-center color="danger">Valor Pago: R${{ item.valor_pago }}</h3>
+
+    </ion-card>
+
+  </div>
+</ion-content>
+
+<ion-footer *ngIf="!keyboard.isOpen()">
+  <ion-navbar color="primary">
+
+    <div text-center>
+      <ion-icon (click)="footerClosed = !footerClosed" class="pulse"
+        [name]="!footerClosed ? 'ios-arrow-down':'ios-arrow-up'"></ion-icon>
+    </div>
+
+    <div [class]="footerClosed && 'sanfona-fechada'">
+      <div *ngIf="array_render.length && isCaixaAberto">
+        <h6>Caixa Aberto <ion-badge class="pulse" (click)="fecharCaixa()" item-end color="danger" float-right>
+            Fechar Caixa
+          </ion-badge>
+        </h6>
+      </div>
+      <div>
+        <h6 ion-text text-center>
+          Quantidade de carros:
+          <ion-badge item-end color="danger">{{ array_render.length }}</ion-badge>
+        </h6>
+      </div>
+      <div>
+        <h6 ion-text text-center>
+          Total Arrecadado: R${{total_arrecadado.toFixed(2)}}
+        </h6>
+      </div>
+    </div>
+  </ion-navbar>
+</ion-footer>

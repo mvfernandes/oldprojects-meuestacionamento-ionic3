@@ -1,16 +1,145 @@
-// http://ionicframework.com/docs/theming/
+* ::-webkit-scrollbar {
+  display: none;
+}
 
+ion-item {
+  border: 0 !important;
+  padding-left: 0 !important;
+}
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+ion-content,
+ion-list,
+ion-item {
+  color: #fff;
+  background: #333 !important;
+}
+
+.ion-content-menu-side,
+.ion-footer-menu-side {
+  :active {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  button {
+    background: rgba(0, 0, 0, 0);
+    color: #fff;
+  }
+}
+
+.negrito {
+  font-weight: bold;
+}
+
+ion-alert {
+  &.style-confirm-remove-placa-patio {
+    span > div {
+      white-space: pre-line !important;
+    }
+    text-transform: uppercase;
+    .style-confirm-remove-placa-patio-btn-cancel {
+      color: map-get($colors, danger);
+    }
+    .alert-head {
+      padding: 10px 20px;
+      text-align: center;
+    }
+    .alert-button-group {
+      display: flex;
+      justify-content: space-around;
+    }
+    &.alert-md .alert-wrapper {
+      min-width: 300px !important;
+    }
+    .alert-message {
+      max-height: 350px;
+      color: #333;
+      font-size: 18px;
+      white-space: pre-line !important;
+    }
+  }
+}
+.flex-center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: column;
+}
+.container {
+  width: 100%;
+  max-width: 600px !important;
+  margin: auto !important;
+}
+._block {
+  width: inherit !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+.color-danger {
+  color: map-get($colors, danger) !important;
+}
+.text-center {
+  text-align: center !important;
+}
+
+.bg-danger {
+  .toast-message {
+    background: map-get($colors, danger) !important;
+    text-align: center;
+  }
+}
+
+.toast-container,
+.toast-md .toast-wrapper {
+  background: rgba(0, 0, 0, 0);
+  width: 95% !important;
+  margin: auto;
+  border-radius: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  .toast-message {
+    background-color: color($colors, secondary);
+    text-align: center;
+  }
+}
+
+.shake {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  @keyframes shake {
+    10%,
+    90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+      transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+}
+
+.text-danger {
+  color: map-get($colors, danger) !important;
+}
+
+.pulse {
+  &:active {
+    transition: all 1s !important;
+    transform: scale(1.5) !important;
+  }
+}

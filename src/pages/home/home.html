@@ -1,18 +1,43 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Meu Estacionamento</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="state.fecharApp()">
+        <ion-icon name="md-log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content padding class="flex-center">
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <div class="container flex-center">
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+    <ion-avatar padding class="flex-center" round>
+      <img src="assets/ico.png" class="shake">
+    </ion-avatar>
+    <!-- <div class="flex-center icon-car">
+      <ion-icon name="car" color="ligth"></ion-icon>
+    </div> -->
+
+    <ion-grid text-center>
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button block large (click)="pushPagePlaca('entrada')">Entrada</button>
+        </ion-col>
+        <ion-col col-12>
+          <button color="danger" ion-button block large (click)="pushPagePlaca('saida')">Pátio / Saída</button>
+        </ion-col>
+        <ion-col col-12>
+          <button ion-button block large (click)="toRelatorioPage()">Relatório</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
 </ion-content>
